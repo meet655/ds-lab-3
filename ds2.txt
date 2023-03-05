@@ -1,0 +1,98 @@
+#include <stdio.h>
+#define MAX_SIZE 5
+
+int stack[MAX_SIZE];
+int top = -1;
+
+bool isempty() {
+    return top == -1;
+}
+
+bool isfull() {
+    return top == MAX_SIZE - 1;
+}
+
+void push(int item) {
+    if (isfull()) {
+        printf("Stack is full\n");
+        return;
+    }
+    stack[++top] = item;
+    printf("Pushed %d onto the stack\n", item);
+}
+
+int pop() {
+    if (isempty()) {
+        printf("Stack is empty\n");
+        return -1;
+    }
+    int item = stack[top--];
+    printf("Popped %d from the stack\n", item);
+    return item;
+}
+
+void display() {
+    if (isempty()) {
+        printf("Stack is empty\n");
+        return;
+    }
+    printf("Stack contents:\n");
+    for (int i = top; i >= 0; i--) {
+        printf("%d\n", stack[i]);
+    }
+}
+
+int main() {
+    int choice, item;
+    while (1) {
+        printf("1. Push\n");
+        printf("2. Pop\n");
+        printf("3. Display\n");
+        printf("4. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+        switch (choice) {
+            case 1:
+                printf("Enter the item to push: ");
+                scanf("%d", &item);
+                push(item);
+                break;
+            case 2:
+                pop();
+                break;
+            case 3:
+                display();
+                break;
+            case 4:
+                return 0;
+            default:
+                printf("Invalid choice\n");
+                break;
+        }
+    }
+}
+
+
+
+output
+
+
+1. Push
+2. Pop
+3. Display
+4. Exit
+Enter your choice: 1
+Enter the item to push: 5
+Pushed 5 onto the stack
+1. Push
+2. Pop
+3. Display
+4. Exit
+Enter your choice: 2
+Popped 5 from the stack
+1. Push
+2. Pop
+3. Display
+4. Exit
+Enter your choice: 
+
